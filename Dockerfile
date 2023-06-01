@@ -21,7 +21,7 @@ ENV MYSQL_HOST 10.13.106.220:3306
 ENV MYSQL_USER_NAME root
 ENV MYSQL_PASSWORD 123456
 ENV DATABASE_NAME music_app
-ENV APPLICATION_PORT 80
+ENV APPLICATION_PORT 8080
 
 # 安装依赖包，如需其他依赖包，请到alpine依赖包管理(https://pkgs.alpinelinux.org/packages?name=php8*imagick*&branch=v3.13)查找。
 RUN apk add --update --no-cache openjdk8-jre-base \
@@ -34,7 +34,7 @@ WORKDIR /app
 COPY --from=build /app/target/music-app-0.0.1.jar .
 
 # 暴露端口
-EXPOSE 80
+EXPOSE 8080
 
 # 执行启动命令
 CMD ["java", "-jar", "/app/music-app-0.0.1.jar", "--spring.profiles.active=test"]
